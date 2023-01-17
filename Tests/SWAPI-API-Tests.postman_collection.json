@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "bb24b6d7-bdfc-4ea4-9158-eadcbb090ee7",
+		"name": "SWAPI-API-Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21186821"
+	},
+	"item": [
+		{
+			"name": "RetrieveData",
+			"item": [
+				{
+					"name": "GetAllPeople",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}people",
+							"host": [
+								"{{baseUrl}}people"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPlanets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}planets",
+							"host": [
+								"{{baseUrl}}planets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPlanetsFilms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}films",
+							"host": [
+								"{{baseUrl}}films"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPlanetsSpecies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}species",
+							"host": [
+								"{{baseUrl}}species"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPlanetsVehicles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}vehicles",
+							"host": [
+								"{{baseUrl}}vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllPlanetsStarships",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}starships",
+							"host": [
+								"{{baseUrl}}starships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSpecies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('Verify species data', () => {\r",
+									"    var data = pm.response.json();\r",
+									"    pm.expect(data.people.length).to.eql(4);\r",
+									"    pm.expect(data.films.length).to.eql(6);\r",
+									"    pm.expect(data.classification).to.eql('mammal');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/species/:id/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"species",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPerson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify person data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql('Luke Skywalker');\r",
+									"        pm.expect(jsonData.height).to.eql('172');\r",
+									"            pm.expect(jsonData.mass).to.eql('77');\r",
+									"                pm.expect(jsonData.hair_color).to.eql('blond');\r",
+									"                    pm.expect(jsonData.skin_color).to.eql('fair');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/people/:id/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"people",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PostData",
+			"item": [
+				{
+					"name": "CreatePost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 666,\r\n  \"title\": \"TestTitle\",\r\n  \"body\": \"This is a test body\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrlJsonPlaceholder}}/posts",
+							"host": [
+								"{{baseUrlJsonPlaceholder}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
